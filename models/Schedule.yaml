@@ -1,0 +1,17 @@
+type: object
+properties:
+  evenet:
+    type: string
+  from:
+    type: string
+  to:
+    type: string
+  duration:
+    type: integer
+x-examples:
+  example-1:
+    evenet: running
+    from: '2022-08-02T02:46:19.928Z'
+    to: '2022-08-02T02:46:19.928Z'
+    duration: 30
+title: ''

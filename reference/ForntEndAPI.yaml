@@ -1,0 +1,417 @@
+openapi: 3.1.0
+x-stoplight:
+  id: 6840ttbvlb59b
+info:
+  title: ForntendAPI
+  version: '1.0'
+  description: API Called from Frontend
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/users/{userId}':
+    parameters:
+      - schema:
+          type: integer
+        name: userId
+        in: path
+        required: true
+        description: Id of an existing user.
+    get:
+      summary: Get User Info by User ID
+      tags: []
+      responses:
+        '200':
+          description: ユーザ情報を取得する
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Get User Alice Smith:
+                  value:
+                    id: 142
+                    firstName: Alice
+                    lastName: Smith
+                    email: alice.smith@gmail.com
+                    dateOfBirth: '1997-10-31'
+                    emailVerified: true
+                    signUpDate: '2019-08-24'
+        '404':
+          description: User Not Found
+      operationId: get-users-userId
+      description: Retrieve the information of the user with the matching user ID.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+          description: userId
+    patch:
+      summary: Update User Information
+      operationId: patch-users-userId
+      responses:
+        '200':
+          description: User Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                Updated User Rebecca Baker:
+                  value:
+                    id: 13
+                    firstName: Rebecca
+                    lastName: Baker
+                    email: rebecca@gmail.com
+                    dateOfBirth: '1985-10-02'
+                    emailVerified: false
+                    createDate: '2019-08-24'
+        '404':
+          description: User Not Found
+        '409':
+          description: Email Already Taken
+      description: ユーザー情報を更新する
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+            examples:
+              Update First Name:
+                value:
+                  firstName: Rebecca
+              Update Email:
+                value:
+                  email: rebecca@gmail.com
+              Update Last Name & Date of Birth:
+                value:
+                  lastName: Baker
+                  dateOfBirth: '1985-10-02'
+        description: Patch user properties to update.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+  /user:
+    post:
+      summary: Create New User
+      operationId: post-user
+      responses:
+        '200':
+          description: User Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+              examples:
+                New User Bob Fellow:
+                  value:
+                    id: 12
+                    firstName: Bob
+                    lastName: Fellow
+                    email: bob.fellow@gmail.com
+                    dateOfBirth: '1996-08-24'
+                    emailVerified: false
+                    createDate: '2020-11-18'
+        '400':
+          description: Missing Required Information
+        '409':
+          description: Email Already Taken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userName:
+                  type: string
+                gender:
+                  type: string
+                age:
+                  type: integer
+                height:
+                  type: integer
+                weight:
+                  type: integer
+                activeLevel:
+                  type: integer
+                commutingTime:
+                  type: integer
+                activeTime:
+                  type: object
+                  properties:
+                    from:
+                      type: string
+                    to:
+                      type: string
+                slackId:
+                  type: string
+              x-examples:
+                example-1:
+                  userName: string
+                  gender: string
+                  age: 0
+                  height: 0
+                  weight: 0
+                  activeLevel: 0
+                  commutingTime: 0
+                  activeTime:
+                    from: string
+                    to: string
+                  slackId: string
+            examples:
+              example-1:
+                value:
+                  userName: string
+                  gender: string
+                  age: 0
+                  height: 0
+                  weight: 0
+                  activeLevel: 0
+                  commutingTime: 0
+                  activeTime:
+                    from: string
+                    to: string
+                  slackId: string
+        description: Post the necessary fields for the API to create a new user.
+      description: 新規ユーザー登録をする
+  '/users/{userId}/todo':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      summary: Get today's TODO
+      tags: []
+      responses: {}
+      operationId: get-users-userId-todo
+      description: 今日やるべきタスクの一覧を表示する
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  Id:
+                    type: string
+                  evenet:
+                    type: string
+                  from:
+                    type: string
+                  to:
+                    type: string
+                  duration:
+                    type: integer
+                  status:
+                    type: string
+                  calorie:
+                    type: integer
+              x-examples:
+                example-1:
+                  - Id: string
+                    evenet: string
+                    from: string
+                    to: string
+                    duration: 0
+                    status: string
+                    calorie: 0
+            examples:
+              example-1:
+                value:
+                  - Id: string
+                    evenet: string
+                    from: string
+                    to: string
+                    duration: 0
+                    status: string
+                    calorie: 0
+                    '': string
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+  '/users/{userId}/achievement':
+    parameters:
+      - schema:
+          type: string
+        name: userId
+        in: path
+        required: true
+    get:
+      summary: Get achievement
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date:
+                      type: string
+                    cal:
+                      type: integer
+                x-examples:
+                  example-1:
+                    - date: '2020-08-02'
+                      cal: 300
+                    - date: '2020-08-02'
+                      cal: 300
+      operationId: get-users-userId-achievement
+      description: 過去1年分の1日ごとの消費カロリーを返す
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userId
+  '/users/{userid}/todo/done/{taskId}':
+    parameters:
+      - schema:
+          type: string
+        name: userid
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: taskId
+        in: path
+        required: true
+    get:
+      summary: Task Complete
+      tags: []
+      responses: {}
+      operationId: get-users-userid-todo-done-taskId
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: taskid
+      description: タスクを完了した
+  '/user/getId/{slackId}':
+    get:
+      summary: Get userid from slackId
+      tags: []
+      responses: {}
+      operationId: get-user-getId
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+              x-examples:
+                example-1:
+                  userId: sss
+    parameters:
+      - schema:
+          type: string
+        name: slackId
+        in: path
+        required: true
+components:
+  schemas:
+    User:
+      type: object
+      x-examples:
+        example-1:
+          userName: string
+          gender: string
+          age: 0
+          height: 0
+          weight: 0
+          activeLevel: 0
+          commutingTime: 0
+          activeTime:
+            from: '2022-08-02T02:46:19.928Z'
+            to: '2022-08-02T02:46:19.928Z'
+      examples:
+        - userName: string
+          gender: string
+          age: 0
+          height: 0
+          weight: 0
+          activeLevel: 0
+          commutingTime: 0
+          activeTime:
+            from: string
+            to: string
+          uuid: string
+          slackId: string
+          '': string
+      properties:
+        userName:
+          type: string
+        gender:
+          type: string
+        age:
+          type: integer
+        height:
+          type: integer
+        weight:
+          type: integer
+        activeLevel:
+          type: integer
+        commutingTime:
+          type: integer
+        activeTime:
+          type: object
+          properties:
+            from:
+              type: string
+            to:
+              type: string
+        slackId:
+          type: string
+      required:
+        - userName
+        - gender
+        - age
+        - height
+        - weight
+        - activeLevel
+        - commutingTime
+        - activeTime
+        - slackId
+    Schedule:
+      type: object
+      x-examples:
+        example-1:
+          evenet: running
+          from: '2022-08-02T02:46:19.928Z'
+          to: '2022-08-02T02:56:19.928Z'
+          duration: 10
+      title: Task
+      properties:
+        Id:
+          type: string
+        evenet:
+          type: string
+        from:
+          type: string
+        to:
+          type: string
+        duration:
+          type: integer
+        status:
+          type: string
+        calorie:
+          type: number
+        '':
+          type: string
+  securitySchemes:
+    authorization:
+      name: idToken
+      type: apiKey
+      in: header

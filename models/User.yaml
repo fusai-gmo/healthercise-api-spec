@@ -1,0 +1,26 @@
+type: object
+x-examples:
+  example-1:
+    userName: Koichi
+    gender: male
+    weight: 42
+    height: 140
+    activeLevel: 2
+properties:
+  userName:
+    type: string
+  gender:
+    type: string
+  weight:
+    type:
+      - integer
+      - number
+  height:
+    type:
+      - integer
+      - number
+  activeLevel:
+    type: integer
+title: User
+description: |
+  User information
