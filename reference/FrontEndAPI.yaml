@@ -374,6 +374,8 @@ components:
               type: string
         slackId:
           type: string
+        includeCommutingTime:
+          type: boolean
       required:
         - userName
         - gender
