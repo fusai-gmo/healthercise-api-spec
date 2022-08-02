@@ -4,5 +4,11 @@
   "main": "index.js",
   "repository": "https://github.com/fusai-gmo/healthercise-api.git",
   "author": "VOID <kouichi.hirachi@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "doc-gen": "yarn redoc-cli bundle -o ./reference/healthercie-api.html ./reference/FrontEndAPI.yaml"
+  },
+  "dependencies": {
+    "redoc-cli": "^0.13.17"
+  }
 }
