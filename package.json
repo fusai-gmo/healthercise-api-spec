@@ -1,0 +1,8 @@
+{
+  "name": "healthercise-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/fusai-gmo/healthercise-api.git",
+  "author": "VOID <kouichi.hirachi@gmail.com>",
+  "license": "MIT"
+}
