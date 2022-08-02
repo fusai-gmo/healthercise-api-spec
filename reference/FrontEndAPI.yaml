@@ -402,12 +402,10 @@ components:
           type: string
         from:
           type: string
-        to:
-          type: string
         duration:
           type: integer
-        status:
-          type: string
+        isFinished:
+          type: boolean
         calorie:
           type: number
         '':
