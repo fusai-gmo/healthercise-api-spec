@@ -386,7 +386,7 @@ components:
         - commutingTime
         - activeTime
         - slackId
-    Schedule:
+    Task:
       type: object
       x-examples:
         example-1:
