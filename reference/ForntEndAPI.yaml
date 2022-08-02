@@ -298,11 +298,11 @@ paths:
       description: タスクを完了した
   '/user/getId/{slackId}':
     get:
-      summary: Get userid from slackId
+      summary: Get UserId
       tags: []
       responses: {}
       operationId: get-user-getId
-      description: ''
+      description: SlackIdからUserIdを取得する
       requestBody:
         content:
           application/json:
