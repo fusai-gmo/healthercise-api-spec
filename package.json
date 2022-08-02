@@ -6,7 +6,7 @@
   "author": "VOID <kouichi.hirachi@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "doc-gen": "yarn redoc-cli bundle -o ./reference/healthercie-api.html ./reference/FrontEndAPI.yaml"
+    "doc-gen": "yarn redoc-cli bundle -o ./index.html ./reference/FrontEndAPI.yaml"
   },
   "dependencies": {
     "redoc-cli": "^0.13.17"
