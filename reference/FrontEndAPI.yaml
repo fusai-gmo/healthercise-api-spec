@@ -123,6 +123,19 @@ paths:
           application/json:
             schema:
               type: object
+              x-examples:
+                example-1:
+                  userName: string
+                  gender: string
+                  age: 0
+                  height: 0
+                  weight: 0
+                  activeLevel: 0
+                  commutingTime: 0
+                  activeTime:
+                    from: string
+                    to: string
+                  slackId: string
               properties:
                 userName:
                   type: string
@@ -147,19 +160,8 @@ paths:
                       type: string
                 slackId:
                   type: string
-              x-examples:
-                example-1:
-                  userName: string
-                  gender: string
-                  age: 0
-                  height: 0
-                  weight: 0
-                  activeLevel: 0
-                  commutingTime: 0
-                  activeTime:
-                    from: string
-                    to: string
-                  slackId: string
+                email:
+                  type: string
             examples:
               example-1:
                 value:
@@ -376,6 +378,8 @@ components:
           type: string
         includeCommutingTime:
           type: boolean
+        email:
+          type: string
       required:
         - userName
         - gender
