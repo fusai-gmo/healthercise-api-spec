@@ -25,7 +25,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: '#/components/schemas/UserBase'
               examples:
                 Get User Alice Smith:
                   value:
@@ -55,17 +55,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
-              examples:
-                Updated User Rebecca Baker:
-                  value:
-                    id: 13
-                    firstName: Rebecca
-                    lastName: Baker
-                    email: rebecca@gmail.com
-                    dateOfBirth: '1985-10-02'
-                    emailVerified: false
-                    createDate: '2019-08-24'
+                $ref: '#/components/schemas/UserBase'
+              examples: {}
         '404':
           description: User Not Found
         '409':
@@ -123,19 +114,6 @@ paths:
           application/json:
             schema:
               type: object
-              x-examples:
-                example-1:
-                  userName: string
-                  gender: string
-                  age: 0
-                  height: 0
-                  weight: 0
-                  activeLevel: 0
-                  commutingTime: 0
-                  activeTime:
-                    from: string
-                    to: string
-                  slackId: string
               properties:
                 userName:
                   type: string
@@ -149,7 +127,11 @@ paths:
                   type: integer
                 activeLevel:
                   type: integer
-                goworkTime:
+                includeCommutingTime:
+                  type: boolean
+                email:
+                  type: string
+                goWorkTime:
                   type: object
                   properties:
                     from:
@@ -170,26 +152,26 @@ paths:
                       type: string
                     to:
                       type: string
-                slackId:
-                  type: string
-                email:
-                  type: string
-                includeCommutingTime:
-                  type: boolean
-            examples:
-              example-1:
-                value:
+              x-examples:
+                example-1:
                   userName: string
                   gender: string
                   age: 0
                   height: 0
                   weight: 0
                   activeLevel: 0
-                  commutingTime: 0
+                  includeCommutingTime: true
+                  email: string
+                  goWorkTime:
+                    from: string
+                    to: string
+                  leaveWorkTime:
+                    from: string
+                    to: string
                   activeTime:
                     from: string
                     to: string
-                  slackId: string
+            examples: {}
         description: Post the necessary fields for the API to create a new user.
       description: 新規ユーザー登録をする
   '/users/{userId}/todo':
@@ -338,34 +320,8 @@ paths:
         required: true
 components:
   schemas:
-    User:
+    UserBase:
       type: object
-      x-examples:
-        example-1:
-          userName: string
-          gender: string
-          age: 0
-          height: 0
-          weight: 0
-          activeLevel: 0
-          commutingTime: 0
-          activeTime:
-            from: '2022-08-02T02:46:19.928Z'
-            to: '2022-08-02T02:46:19.928Z'
-      examples:
-        - userName: string
-          gender: string
-          age: 0
-          height: 0
-          weight: 0
-          activeLevel: 0
-          commutingTime: 0
-          activeTime:
-            from: string
-            to: string
-          uuid: string
-          slackId: string
-          '': string
       properties:
         userName:
           type: string
@@ -379,8 +335,24 @@ components:
           type: integer
         activeLevel:
           type: integer
-        commutingTime:
-          type: integer
+        includeCommutingTime:
+          type: boolean
+        email:
+          type: string
+        goWorkTime:
+          type: object
+          properties:
+            from:
+              type: string
+            to:
+              type: string
+        leaveWorkTime:
+          type: object
+          properties:
+            from:
+              type: string
+            to:
+              type: string
         activeTime:
           type: object
           properties:
@@ -388,22 +360,45 @@ components:
               type: string
             to:
               type: string
-        slackId:
-          type: string
-        includeCommutingTime:
-          type: boolean
-        email:
-          type: string
-      required:
-        - userName
-        - gender
-        - age
-        - height
-        - weight
-        - activeLevel
-        - commutingTime
-        - activeTime
-        - slackId
+      x-examples:
+        example-1:
+          userName: s
+          gender: male
+          age: 13
+          height: 13
+          weight: 10
+          activeLevel: 2
+          includeCommutingTime: true
+          email: kichi.hirachi@gmail.com
+          goWorkTime:
+            from: '2022-08-03T06:22:39.543Z'
+            to: '2022-08-03T06:22:39.543Z'
+          leaveWorkTime:
+            from: '2022-08-03T06:22:39.543Z'
+            to: '2022-08-03T06:22:39.543Z'
+          activeTime:
+            from: '2022-08-03T06:22:39.543Z'
+            to: '2022-08-03T06:22:39.543Z'
+      examples:
+        - userName: string
+          gender: string
+          age: 0
+          height: 0
+          weight: 0
+          activeLevel: 0
+          includeCommutingTime: true
+          email: string
+          goWorkTime:
+            from: string
+            to: string
+          leaveWorkTime:
+            from: string
+            to: string
+          activeTime:
+            from: string
+            to: string
+          slackId: aaaaaaa
+          id: 3
     Task:
       type: object
       x-examples:
