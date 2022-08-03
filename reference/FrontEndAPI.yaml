@@ -57,7 +57,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/UserBase'
             examples:
               Update First Name:
                 value:
