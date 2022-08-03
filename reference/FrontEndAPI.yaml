@@ -105,25 +105,6 @@ paths:
           application/json:
             schema:
               type: object
-              x-examples:
-                example-1:
-                  userName: string
-                  gender: string
-                  age: 0
-                  height: 0
-                  weight: 0
-                  activeLevel: 0
-                  includeCommutingTime: true
-                  email: string
-                  goWorkTime:
-                    from: string
-                    to: string
-                  leaveWorkTime:
-                    from: string
-                    to: string
-                  activeTime:
-                    from: string
-                    to: string
               properties:
                 userName:
                   type: string
@@ -155,15 +136,22 @@ paths:
                       type: string
                     finish:
                       type: string
-                activeTime:
-                  type: object
-                  properties:
-                    start:
-                      type: string
-                    finish:
-                      type: string
-                slackId:
-                  type: string
+              x-examples:
+                example-1:
+                  userName: s
+                  gender: male
+                  age: 13
+                  height: 13
+                  weight: 10
+                  activeLevel: 2
+                  includeCommutingTime: true
+                  email: koshi.hirachi@gmail.com
+                  goWorkTime:
+                    start: '10:30'
+                    finish: '9:30'
+                  leaveWorkTime:
+                    start: '10:30'
+                    finish: '13:30'
             examples: {}
         description: Post the necessary fields for the API to create a new user.
       description: 新規ユーザー登録をする
