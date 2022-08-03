@@ -144,23 +144,23 @@ paths:
                 goWorkTime:
                   type: object
                   properties:
-                    from:
+                    start:
                       type: string
-                    to:
+                    finish:
                       type: string
                 leaveWorkTime:
                   type: object
                   properties:
-                    from:
+                    start:
                       type: string
-                    to:
+                    finish:
                       type: string
                 activeTime:
                   type: object
                   properties:
-                    from:
+                    start:
                       type: string
-                    to:
+                    finish:
                       type: string
                 slackId:
                   type: string
@@ -374,23 +374,23 @@ components:
         goWorkTime:
           type: object
           properties:
-            from:
+            start:
               type: string
-            to:
+            finish:
               type: string
         leaveWorkTime:
           type: object
           properties:
-            from:
+            start:
               type: string
-            to:
+            finish:
               type: string
         activeTime:
           type: object
           properties:
-            from:
+            start:
               type: string
-            to:
+            finish:
               type: string
         slackId:
           type: string
