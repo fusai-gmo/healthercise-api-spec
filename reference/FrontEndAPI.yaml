@@ -149,8 +149,20 @@ paths:
                   type: integer
                 activeLevel:
                   type: integer
-                commutingTime:
-                  type: integer
+                goworkTime:
+                  type: object
+                  properties:
+                    from:
+                      type: string
+                    to:
+                      type: string
+                leaveWorkTime:
+                  type: object
+                  properties:
+                    from:
+                      type: string
+                    to:
+                      type: string
                 activeTime:
                   type: object
                   properties:
